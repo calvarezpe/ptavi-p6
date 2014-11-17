@@ -41,10 +41,10 @@ class EchoHandler(SocketServer.DatagramRequestHandler):
                     # iniciar RTP
                     # aEjecutar es un string con lo que se ha de ejecutar
                     # en la shell
-                    aEjecutar = ’mp32rtp -i 127.0.0.1 -p 23032 < ’ + SONG
+                    aEjecutar = 'mp32rtp -i 127.0.0.1 -p 23032 < ' + SONG
                     print "Vamos a ejecutar", aEjecutar
                     os.system(aEjecutar)
-
+                    
                     print "Enviando: Transmisión de datos terminada"
                     self.wfile.write('Transmisión de datos terminada\r\n')
                 elif Method == "BYE":
@@ -60,7 +60,10 @@ if __name__ == "__main__":
     try:
         IP = sys.argv[1]
         PORT = sys.argv[2]
-        SONG = sys.argv[3] #COMPROBAR QUE EXISTE
+        SONG = sys.argv[3] 
+        # Comprobar que existe el archivo mp3
+        if not os.access(SONG, os.F_OK):  # Devuelve True si está en la carpeta
+            sys.exit('Usage: python server.py IP port audio_file')
     except IndexError:
         sys.exit('Usage: python server.py IP port audio_file')
     except ValueError:
