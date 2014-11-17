@@ -6,6 +6,7 @@ Clase (y programa principal) para un servidor de eco en UDP simple
 
 import SocketServer
 import sys
+import os
 
 
 class EchoHandler(SocketServer.DatagramRequestHandler):
@@ -37,7 +38,13 @@ class EchoHandler(SocketServer.DatagramRequestHandler):
                     print "Enviando: SIP/2.0 200 OK"
                     self.wfile.write('SIP/2.0 200 OK\r\n')
                 elif Method == "ACK":
-                    #iniciar RTP
+                    # iniciar RTP
+                    # aEjecutar es un string con lo que se ha de ejecutar
+                    # en la shell
+                    aEjecutar = ’mp32rtp -i 127.0.0.1 -p 23032 < ’ + SONG
+                    print "Vamos a ejecutar", aEjecutar
+                    os.system(aEjecutar)
+
                     print "Enviando: Transmisión de datos terminada"
                     self.wfile.write('Transmisión de datos terminada\r\n')
                 elif Method == "BYE":
