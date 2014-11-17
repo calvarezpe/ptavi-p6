@@ -21,7 +21,7 @@ except ValueError:
     sys.exit('Usage: python client.py method receiver@IP:SIPport')
 
 # Contenido que vamos a enviar
-Line = Method + ' sip:' + NAME + '@' + SERVER + ' SIP2.0'
+Line = Method + ' sip:' + NAME + '@' + SERVER + ' SIP/2.0'
 
 # Creamos el socket, lo configuramos y lo atamos a un servidor/puerto
 my_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
@@ -40,7 +40,7 @@ ListaTexto = data.split('\r\n')
 if Method == "INVITE":
     if ListaTexto[2] == 'SIP/2.0 200 OK':
         Method = "ACK"
-        Line = Method + ' sip:' + NAME + '@' + SERVER + ' SIP2.0'
+        Line = Method + ' sip:' + NAME + '@' + SERVER + ' SIP/2.0'
         print "Enviando: " + Line
         my_socket.send(Line + '\r\n')
 # Si estamos en BYE directamente nos salimos tras imprimir data
