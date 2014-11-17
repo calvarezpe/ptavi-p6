@@ -44,9 +44,7 @@ class EchoHandler(SocketServer.DatagramRequestHandler):
                     aEjecutar = 'mp32rtp -i 127.0.0.1 -p 23032 < ' + SONG
                     print "Vamos a ejecutar", aEjecutar
                     os.system(aEjecutar)
-                    
                     print "Enviando: Transmisión de datos terminada"
-                    self.wfile.write('Transmisión de datos terminada\r\n')
                 elif Method == "BYE":
                     print "Enviando: SIP/2.0 200 OK"
                     self.wfile.write('SIP/2.0 200 OK\r\n')
