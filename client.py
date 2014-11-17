@@ -35,7 +35,7 @@ try:
 except:
     sys.exit('Error: No server listening at ' + SERVER + ' port ' + PORT)
 
-print 'Recibido -- ', data
+print 'Recibido -- \r\n', data
 print "Terminando socket..."
 
 # Cerramos todo
