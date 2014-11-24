@@ -15,6 +15,10 @@ class EchoHandler(SocketServer.DatagramRequestHandler):
     """
 
     def handle(self):
+    """
+    Servidor de recepción que contesta a peticiones INVITE del cliente
+    descargando un archivo mp3, y a peticiones BYE
+    """
         print "El cliente " + str(self.client_address) + " nos manda:"
         # Escribe dirección y puerto del cliente (de tupla client_address)
         while 1:
