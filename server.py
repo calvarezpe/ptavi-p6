@@ -30,6 +30,7 @@ class EchoHandler(SocketServer.DatagramRequestHandler):
                 print line
                 WordList = line.split(' ')
                 Method = WordList[0]
+                IP_CLIENT = str(self.client_address[0])
                 if not Method in MethodList:
                     print "Enviando: SIP/2.0 405 Method Not Allowed"
                     self.wfile.write('SIP/2.0 405 Method Not Allowed\r\n')
@@ -45,7 +46,7 @@ class EchoHandler(SocketServer.DatagramRequestHandler):
                     # iniciar RTP
                     # aEjecutar es un string con lo que se ha de ejecutar
                     # en la shell
-                    aEjecutar = 'mp32rtp -i 127.0.0.1 -p 23032 < ' + SONG
+                    aEjecutar = './mp32rtp -i ' + IP_CLIENT + ' -p 23032 < ' + SONG
                     print "Vamos a ejecutar", aEjecutar
                     os.system(aEjecutar)
                     print "Enviando: Transmisión de datos terminada"
