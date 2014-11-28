@@ -11,7 +11,7 @@ import sys
 
 # Dirección IP del servidor.
 try:
-    Method = sys.argv[1]
+    Method = sys.argv[1].upper()
     NAME = sys.argv[2].split('@')[0]
     SERVER = sys.argv[2].split('@')[1].split(':')[0]
     PORT = sys.argv[2].split('@')[1].split(':')[1]
